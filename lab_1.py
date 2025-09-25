@@ -47,7 +47,7 @@ class JointStateSubscriber(Node):
         return self.target_joint_pos, self.target_joint_vel
 
     def calculate_torque(self, joint_pos, joint_vel, target_joint_pos, target_joint_vel):
-        tau = KP * (target_joint_pos - joint_pos)
+        tau = KP * (target_joint_pos - joint_pos) + KD * (target_joint_vel - joint_vel)
         if joint_pos > 13:
             return tau
         else:
